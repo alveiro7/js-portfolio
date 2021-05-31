@@ -1,0 +1,20 @@
+const path = require('path')
+
+module.exports = {
+    // Le pasamos explicitamente el modo desde el arhcivo
+    mode: "production",
+    // Entry nos permite decir el punto de entrada de nuestra aplicacion
+    entry: "./src/index.js",
+    // Output nos permite decir dónde va enviar lo que va a preparar webpacks
+    output: {
+        // path es donde estará la carpeta donde se guardará los archivos
+        // con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
+        path: path.resolve(__dirname, "dist"),
+        // filename le pone el nombre al archivo final
+        filename: "main.js"
+    }, 
+    resolve: {
+        // Aqui ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
+        extensions:[".js"]
+    },
+}
