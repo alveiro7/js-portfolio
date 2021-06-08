@@ -1,4 +1,7 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+
 
 module.exports = {
     // Le pasamos explicitamente el modo desde el arhcivo
@@ -30,5 +33,15 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
-    }
+    },
+    // Seccion de plugins
+    plugins: [
+        new HtmlWebpackPlugin({
+            // configuracion del plugin
+            inject: true, // inyecta el bumdle al template HTML
+            template:'./public/index.html', // la ruta del template HTML
+            filename: './index.html' // nombre final del archivo
+        })
+
+    ]
 }
