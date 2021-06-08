@@ -12,9 +12,23 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         // filename le pone el nombre al archivo final
         filename: "main.js"
-    }, 
+    },
     resolve: {
         // Aqui ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
         extensions:[".js"]
     },
+    module: {
+        // Reglas para trabajar webpack
+        rules: [
+            {
+                // lee los archivos .js
+                test: /\.m?js$/,
+                use: {
+                    loader: 'babel-loader'
+                },
+                // ignora la carpeta node modules
+                exclude: /node_modules/
+            }
+        ]
+    }
 }
