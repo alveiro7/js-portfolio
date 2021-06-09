@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
 module.exports = {
@@ -31,6 +31,14 @@ module.exports = {
                 },
                 // ignora la carpeta node modules
                 exclude: /node_modules/
+            },
+            // una nueva regla para los css y preprocesador sass
+            {
+                test:/\.css|.scss$/i,
+                use: [MiniCssExtractPlugin.loader,
+                'css-loader',
+                'sass-loader'
+                ],
             }
         ]
     },
@@ -41,7 +49,7 @@ module.exports = {
             inject: true, // inyecta el bumdle al template HTML
             template:'./public/index.html', // la ruta del template HTML
             filename: './index.html' // nombre final del archivo
-        })
-
+        }),
+        new MiniCssExtractPlugin(),
     ]
 }
