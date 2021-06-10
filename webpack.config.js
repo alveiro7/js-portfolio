@@ -39,6 +39,11 @@ module.exports = {
                 'css-loader',
                 'sass-loader'
                 ],
+            },
+            {
+                //asset module
+                test: /\.png/,
+                type: 'asset/resource'
             }
         ]
     },

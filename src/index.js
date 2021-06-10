@@ -1,7 +1,7 @@
 import Template from './templates/Template.js'
 import './styles/main.css'
 import './scss/project.scss'
-console.log('hola')
+console.log('hola');
 
 
 (async function App() {
