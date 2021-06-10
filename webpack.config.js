@@ -1,7 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+const CopyPlugin = require ('copy-webpack-plugin')
 
 module.exports = {
     // Le pasamos explicitamente el modo desde el arhcivo
@@ -51,5 +51,13 @@ module.exports = {
             filename: './index.html' // nombre final del archivo
         }),
         new MiniCssExtractPlugin(),
+        new CopyPlugin({
+            patterns: [
+                {   // la carpeta que voy a copiar
+                    from: path.resolve(__dirname, "src", "assets/images"),
+                    to: "assets/images" // la ruta donde van los archivos
+                }
+            ]
+        })
     ]
 }
