@@ -2,6 +2,9 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require ('copy-webpack-plugin')
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
     // Le pasamos explicitamente el modo desde el arhcivo
@@ -14,7 +17,7 @@ module.exports = {
         // con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
         path: path.resolve(__dirname, "dist"),
         // filename le pone el nombre al archivo final
-        filename: "main.js",
+        filename: "[name].[contenthash].js",
         // carpeta donde van a ir los assets module
         assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
@@ -63,7 +66,7 @@ module.exports = {
                             // nombre inicial del archivo + ext
                             // puedes agragarle  [name]hola.[ext]
                             // el output seria asi ubuntu-regularhola.woff
-                            name: "[name].[ext]",
+                            name: "[name].[contenthash].[ext]",
                             // directorio de salida
                             outputPath: "./assets/fonts/",
                             // directorio publico
@@ -83,7 +86,11 @@ module.exports = {
             template:'./public/index.html', // la ruta del template HTML
             filename: './index.html' // nombre final del archivo
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'assets/[name].[contenthash].css'
+        }
+
+        ),
         new CopyPlugin({
             patterns: [
                 {   // la carpeta que voy a copiar
@@ -92,5 +99,14 @@ module.exports = {
                 }
             ]
         })
-    ]
+    ],
+
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new HtmlMinimizerPlugin(),
+            new CssMinimizerPlugin(),
+            new TerserPlugin(),
+        ]
+    }
 }
