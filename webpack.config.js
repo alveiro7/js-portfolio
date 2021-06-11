@@ -14,7 +14,9 @@ module.exports = {
         // con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
         path: path.resolve(__dirname, "dist"),
         // filename le pone el nombre al archivo final
-        filename: "main.js"
+        filename: "main.js",
+        // carpeta donde van a ir los assets module
+        assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     resolve: {
         // Aqui ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
@@ -44,7 +46,33 @@ module.exports = {
                 //asset module
                 test: /\.png/,
                 type: 'asset/resource'
-            }
+            },
+            // url loader fonts
+            {
+                test:/\.(woff|woff2)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                            // o le pasamos un bool [true o false]
+                            // habilita o deshabilita la transformacion en base64
+                            limit: 10000,
+                            // Especifica el tipo MIME con el que se alineará el archivo.
+                            // Los MIME Types (Multipurpose Internet Mail Extensions)
+                            // son la manera standard de mandar contenido a través de la red.
+                            mimetype: "application/font-woff",
+                            // nombre inicial del archivo + ext
+                            // puedes agragarle  [name]hola.[ext]
+                            // el output seria asi ubuntu-regularhola.woff
+                            name: "[name].[ext]",
+                            // directorio de salida
+                            outputPath: "./assets/fonts/",
+                            // directorio publico
+                            publicPath: "./assets/fonts/",
+                            // avisar explicitamente si es un modulo
+                            esModule: false
+                        }
+                    }
+                }
         ]
     },
     // Seccion de plugins
