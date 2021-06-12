@@ -23,7 +23,17 @@ module.exports = {
     },
     resolve: {
         // Aqui ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
-        extensions:[".js"]
+        extensions:[".js"],
+        //agregamos una key a nuestro objeto resolve
+        // para colocarle alias a las rutas de nuestros archivos
+        alias: {
+            '@utils': path.resolve(__dirname, 'src/utils/'),
+            '@templates': path.resolve(__dirname, 'src/templates/'),
+            '@styles': path.resolve(__dirname, 'src/styles/'),
+            '@images': path.resolve(__dirname, 'src/assets/images/'),
+            '@fonts': path.resolve(__dirname, 'src/assets/fonts/'),
+            '@sass': path.resolve(__dirname, 'src/scss/'),
+        }
     },
     module: {
         // Reglas para trabajar webpack
@@ -70,7 +80,7 @@ module.exports = {
                             // directorio de salida
                             outputPath: "./assets/fonts/",
                             // directorio publico
-                            publicPath: "./assets/fonts/",
+                            publicPath: "../assets/fonts/",
                             // avisar explicitamente si es un modulo
                             esModule: false
                         }

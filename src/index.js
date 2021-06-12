@@ -1,6 +1,6 @@
-import Template from './templates/Template.js'
-import './styles/main.css'
-import './scss/project.scss'
+import Template from '@templates/Template.js'
+import '@styles/main.css'
+import '@sass/project.scss'
 console.log('hola');
 
 
