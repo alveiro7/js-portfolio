@@ -7,6 +7,8 @@ const Dotenv = require('dotenv-webpack')
 module.exports = {
     // Le pasamos explicitamente el modo desde el arhcivo
     mode: "development",
+    //hace que nuestro proyecto se compile de forma automática
+    watch: true,
     // Entry nos permite decir el punto de entrada de nuestra aplicacion
     entry: "./src/index.js",
     // Output nos permite decir dónde va enviar lo que va a preparar webpacks
