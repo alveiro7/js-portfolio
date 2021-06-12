@@ -5,6 +5,7 @@ const CopyPlugin = require ('copy-webpack-plugin')
 const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
     // Le pasamos explicitamente el modo desde el arhcivo
@@ -108,7 +109,8 @@ module.exports = {
                     to: "assets/images" // la ruta donde van los archivos
                 }
             ]
-        })
+        }),
+        new Dotenv()
     ],
 
     optimization: {
