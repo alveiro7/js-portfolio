@@ -112,7 +112,7 @@ module.exports = {
             ]
         }),
         new Dotenv(),
-        // limpiar 
+        // limpiar
         new CleanWebpackPlugin()
     ],
 
